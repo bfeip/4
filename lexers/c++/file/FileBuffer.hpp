@@ -7,21 +7,20 @@
 template <class CharT> class FileBuffer {
 public:
 	
-	using iterator  = typename std::vector<CharT>::const_iterator;
-	using size_type = typename std::vector<CharT>::size_type;
+  using iterator  = typename std::vector<CharT>::const_iterator;
+  using size_type = typename std::vector<CharT>::size_type;
 	
-	FileBuffer(const char* file);
-	bool good() const;
-	iterator begin() const;
-	iterator end() const;
-	size_type size() const;
+  FileBuffer(const char* file);
+  bool good() const;
+  iterator begin() const;
+  iterator end() const;
+  size_type size() const;
 	
-private:
+private:	
+  std::vector<CharT> buffer;
 	
-	std::vector<CharT> buffer;
-	
-	void read(const char* file);
-	void read(std::basic_istream<CharT> &stream);
+  void read(const char* file);
+  void read(std::basic_istream<CharT> &stream);
 	
 };
 
