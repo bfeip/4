@@ -9,25 +9,23 @@
 
 using namespace std;
 
-int main () {
+int main() {
   ofstream output;
   output.open("emoji.hpp");
   	
   string line;
-  ifstream myfile("emoji-data.txt");
+  ifstream inputFile("emoji-data.txt");
   // http://unicode.org/Public/emoji/1.0/emoji-data.txt
   
-  if(myfile.is_open())
-  {
-    output << "#ifndef _EMOJI_HPP_\n";
-    output << "#define _EMOJI_HPP_\n";
+  if(inputFile.is_open()) {
+    output << "#ifndef EMOJI_HPP_\n";
+    output << "#define EMOJI_HPP_\n";
     output << "\n";
     output << "template <class CharT> bool isEmoji(CharT c) {\n";
     output << "\n";
     output << "\tstatic const unordered_set<CharT> emojis = {\n";	
     
-    while(getline(myfile, line))
-    {
+    while(getline(inputFile, line)) {
       if (line.at(0) == '#') {
 	continue;
       }
@@ -58,7 +56,7 @@ int main () {
       cout   << line;
 	  
     }
-    myfile.close();
+    inputFile.close();
 	
 	
     // Flags
@@ -109,7 +107,6 @@ int main () {
     output.close();
 	
   }
-
   else {
     cout << "Unable to open file"; 
   }
